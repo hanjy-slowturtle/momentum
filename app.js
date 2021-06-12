@@ -1,1 +1,2 @@
-alert("hi");
+2 + 2
+"Hello " + "world"
