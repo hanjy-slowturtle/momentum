@@ -1,13 +1,9 @@
 const player = {
     name: "hanjy",
-    points: 999,
-    fat: true,
-};
+    sayHello: function(otherPersonsName) {
+        console.log("Hello " + otherPersonsName + " nice to meet you!");
+    }
+}
 
-console.log(player);
 console.log(player.name);
-console.log(player["name"]);
-
-player.fat = false;
-player.lastName = "potato";
-console.log(player);
+player.sayHello("Mina");
