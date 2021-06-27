@@ -1,5 +1,8 @@
-console.dir(document);
-console.log(document.title);
-document.title = "Hi";
-console.log(document.body);
-console.log(document.location);
+const title = document.getElementById("title");
+console.dir(title);
+
+console.log(title.innerText);
+title.innerText = "Got you!";
+
+console.log(title.id);
+console.log(title.className);
