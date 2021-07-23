@@ -1,29 +1,37 @@
-const toDoForm = document.getElementById("todo-form");
-const toDoInput = toDoForm.querySelector("input");
-const toDoList = document.getElementById("todo-list");
+const todoForm = document.getElementById("todo-form");
+const todoInput = todoForm.querySelector("input");
+const todoList = document.getElementById("todo-list");
 
-function deleteToDo(event) {
+const todos = [];
+
+function saveTodos() {
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function deleteTodo(event) {
     const li = event.target.parentElement;
     li.remove();
 }
 
-function paintToDo(newTodo) {
+function paintTodo(newTodo) {
     const li = document.createElement("li");
     const span = document.createElement("span");
     span.innerText = newTodo;
     const button = document.createElement("button");
     button.innerText = "X";
-    button.addEventListener("click", deleteToDo);
+    button.addEventListener("click", deleteTodo);
     li.appendChild(span);
     li.appendChild(button);
-    toDoList.appendChild(li);
+    todoList.appendChild(li);
 }
 
 function handleToDoSubmit(event) {
     event.preventDefault();
-    const newTodo = toDoInput.value;
-    toDoInput.value = "";
-    paintToDo(newTodo);
+    const newTodo = todoInput.value;
+    todoInput.value = "";
+    todos.push(newTodo);
+    paintTodo(newTodo);
+    saveTodos();
 }
 
-toDoForm.addEventListener("submit", handleToDoSubmit);
+todoForm.addEventListener("submit", handleToDoSubmit);
