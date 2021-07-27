@@ -15,10 +15,11 @@ function deleteTodo(event) {
     li.remove();
 }
 
-function paintTodo(newTodo) {
+function paintTodo(todo) {
     const li = document.createElement("li");
+    li.id = todo.id;
     const span = document.createElement("span");
-    span.innerText = newTodo;
+    span.innerText = todo.text;
     const button = document.createElement("button");
     button.innerText = "X";
     button.addEventListener("click", deleteTodo);
@@ -27,16 +28,20 @@ function paintTodo(newTodo) {
     todoList.appendChild(li);
 }
 
-function handleToDoSubmit(event) {
+function handleTodoSubmit(event) {
     event.preventDefault();
-    const newTodo = todoInput.value;
+    const text = todoInput.value;
     todoInput.value = "";
+    const newTodo = {
+        id: Date.now(),
+        text
+    }
     todos.push(newTodo);
     paintTodo(newTodo);
     saveTodos();
 }
 
-todoForm.addEventListener("submit", handleToDoSubmit);
+todoForm.addEventListener("submit", handleTodoSubmit);
 
 const savedTodos = localStorage.getItem(TODOS_KEY);
 if(savedTodos) {
